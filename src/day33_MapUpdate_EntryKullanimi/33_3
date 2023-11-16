@@ -1,0 +1,49 @@
+public static Map<Integer, String> yilSonuSinifArtir(Map<Integer, String> ogrenciMap) {
+
+
+        // update yapmak icin key'lere ihtiyacimiz var,
+        // key'leri kullanabilmek icin bir keySet olusturuyoruz
+        Set<Integer> keySeti = ogrenciMap.keySet();
+        String[] valueArr; // stirnglerden olusan bi value array'i olusturuyoruz
+
+        // for each ile her bir value'leri ele alalim
+        for (Integer each:keySeti
+             ) {
+            valueArr = ogrenciMap.get(each).split("-");
+
+
+            // array'deki sinif bilgisini 1 artirmam lazim
+            // 4 sinifimiz var, switch ile yapabiliriz
+            switch (valueArr[2]){
+                case "9":
+                    valueArr[2] ="10";
+                    break;
+                case "10":
+                    valueArr[2] ="11";
+                    break;
+                case "11":
+                    valueArr[2] ="12";
+                    break;
+                case "12":
+                    valueArr[2] ="Mezun";
+                    break;
+                    default:
+                    valueArr[2] = null;
+
+            }
+
+            // simdi actigimiz kutulari kapatma zamani
+            // eskinin yerine yeni degerleri atiyoruz
+            // yeniValue tanimlamasi yapiyoruz
+            String yeniValue =  valueArr[0] + "-" +
+                    valueArr[1] + "-" +
+                    valueArr[2] + "-" +
+                    valueArr[3] + "-" +
+                    valueArr[4];
+
+            // bu yeni value'leri put() ile ogrenciMap'e yerlestiriyoruz
+            ogrenciMap.put(each,yeniValue);
+        }
+
+        return ogrenciMap;
+    }
